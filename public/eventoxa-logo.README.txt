@@ -1,0 +1,7 @@
+Place the provided EventOxa logo image in this folder with the filename: eventoxa-logo.png
+
+- Save the exact image file as: eventoxa-logo.png
+- Supported formats: PNG (recommended), JPG, WebP
+- Path accessible in the site as: /eventoxa-logo.png
+
+After saving the image, reload the site to see the updated header and hero center logos.

@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>EventOxa | Engineering the Future of Celebration</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="./styles.css" />
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary": "#ffffff",
+            "background": "#fcf8ff",
+            "on-primary-fixed-variant": "#2f2ebe",
+            "surface": "#fcf8ff",
+            "secondary": "#a93349",
+            "primary-fixed": "#e1e0ff",
+            "primary": "#4648d4",
+            "outline-variant": "#c7c4d7",
+            "tertiary-fixed": "#ffdcc5",
+            "inverse-on-surface": "#f2effb",
+            "tertiary": "#904900",
+            "error": "#ba1a1a",
+            "on-error": "#ffffff",
+            "on-tertiary-container": "#fffbff",
+            "primary-container": "#6063ee",
+            "surface-container": "#efecf8",
+            "error-container": "#ffdad6",
+            "on-surface-variant": "#464554",
+            "secondary-fixed": "#ffdadc",
+            "primary-fixed-dim": "#c0c1ff",
+            "on-surface": "#1b1b23",
+            "surface-dim": "#dbd8e4",
+            "on-secondary": "#ffffff",
+            "on-secondary-fixed-variant": "#891933",
+            "on-primary": "#ffffff",
+            "surface-bright": "#fcf8ff",
+            "on-primary-container": "#fffbff",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-fixed": "#301400",
+            "inverse-surface": "#303038",
+            "secondary-container": "#fe7488",
+            "tertiary-container": "#b55d00",
+            "on-primary-fixed": "#07006c",
+            "outline": "#767586",
+            "secondary-fixed-dim": "#ffb2b9",
+            "tertiary-fixed-dim": "#ffb783",
+            "on-secondary-container": "#730425",
+            "surface-container-high": "#e9e6f3",
+            "surface-container-low": "#f5f2fe",
+            "on-tertiary-fixed-variant": "#703700",
+            "surface-tint": "#494bd6",
+            "on-secondary-fixed": "#400010",
+            "inverse-primary": "#c0c1ff",
+            "on-error-container": "#93000a",
+            "surface-container-highest": "#e4e1ed",
+            "on-background": "#1b1b23",
+            "surface-variant": "#e4e1ed"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "stack-sm": "8px",
+            "stack-md": "16px",
+            "margin-desktop": "48px",
+            "container-max": "1280px",
+            "gutter": "24px",
+            "section-gap": "120px",
+            "margin-mobile": "20px",
+            "stack-lg": "32px"
+          },
+          "fontFamily": {
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Inter"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "body-lg": ["Inter"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Inter"],
+            "label-sm": ["Inter"]
+          },
+          "fontSize": {
+            "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "30px", "fontWeight": "400" }],
+            "display-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+            "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }]
+          }
+        },
+      },
+    }
+  </script>
+
+  <!-- Three.js CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+</head>
+
+<body
+  class="bg-background text-on-background font-body-md overflow-x-hidden selection:bg-primary-container selection:text-white">
+
+  <!-- Global Atmospheric Background Canvas -->
+  <div class="fixed inset-0 w-full h-full -z-10 opacity-40 pointer-events-none" style="display:block;">
+    <canvas id="shader-canvas-ANIMATION_2" style="display:block;width:100%;height:100%"></canvas>
+  </div>
+
+  <!-- TopNavBar -->
+  <nav
+    class="fixed top-0 w-full z-50 bg-white/40 dark:bg-black/40 backdrop-blur-xl border-b border-white/20 dark:border-white/10 shadow-2xl shadow-black/5">
+    <div
+      class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+      <div class="flex items-center gap-3">
+        <img src="/eventoxa-logo.png" alt="EventOxa Logo" class="navbar-logo" />
+        <span class="font-headline-md text-headline-md font-extrabold text-primary">EventOxa</span>
+      </div>
+      <div class="hidden md:flex items-center gap-stack-lg">
+        <a class="font-label-md text-label-md text-primary dark:text-primary-fixed-dim font-bold border-b-2 border-primary hover:scale-105 transition-all duration-300 ease-out"
+          href="#">Experience</a>
+        <a class="font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant/80 font-medium hover:text-primary hover:scale-105 transition-all duration-300 ease-out"
+          href="#">Solutions</a>
+        <a class="font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant/80 font-medium hover:text-primary hover:scale-105 transition-all duration-300 ease-out"
+          href="#registration">Portal</a>
+        <a class="font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant/80 font-medium hover:text-primary hover:scale-105 transition-all duration-300 ease-out"
+          href="#">Pricing</a>
+        <a class="font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant/80 font-medium hover:text-primary hover:scale-105 transition-all duration-300 ease-out"
+          href="#">FAQ</a>
+      </div>
+      <div class="flex items-center gap-4">
+        <button onclick="document.getElementById('registration').scrollIntoView({behavior: 'smooth'})"
+          class="hidden sm:block primary-gradient text-white px-6 py-3 rounded-full font-label-md hover:scale-105 transition-all duration-300 ease-out shadow-xl shadow-primary/20">
+          Get Started
+        </button>
+        <!-- Mobile hamburger menu button -->
+        <button id="menu-toggle" class="md:hidden flex items-center justify-center p-2 text-primary focus:outline-none"
+          aria-label="Toggle Menu">
+          <span class="material-symbols-outlined text-3xl">menu</span>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile nav drawer -->
+    <div id="mobile-menu"
+      class="hidden md:hidden fixed inset-x-0 top-20 bg-white/95 dark:bg-black/95 backdrop-blur-xl border-b border-outline-variant/30 flex flex-col p-6 gap-4 shadow-xl z-40">
+      <a class="mobile-nav-link font-label-md text-primary font-bold" href="#">Experience</a>
+      <a class="mobile-nav-link font-label-md text-on-surface-variant font-medium" href="#">Solutions</a>
+      <a class="mobile-nav-link font-label-md text-on-surface-variant font-medium" href="#registration">Portal</a>
+      <a class="mobile-nav-link font-label-md text-on-surface-variant font-medium" href="#">Pricing</a>
+      <a class="mobile-nav-link font-label-md text-on-surface-variant font-medium" href="#">FAQ</a>
+      <button
+        onclick="document.getElementById('registration').scrollIntoView({behavior: 'smooth'}); document.getElementById('mobile-menu').classList.add('hidden');"
+        class="primary-gradient text-white py-3 rounded-full font-label-md text-center shadow-lg">
+        Get Started
+      </button>
+    </div>
+  </nav>
+
+  <main class="relative pt-20">
+    <!-- Hero Section -->
+    <section
+      class="relative min-h-[700px] md:min-h-[921px] flex items-center px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto overflow-hidden pt-10 md:pt-0">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg items-center w-full">
+        <div class="z-10 space-y-stack-lg text-left">
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm uppercase tracking-widest animate-pulse">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+            Exclusive Partner Access
+          </div>
+          <h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg leading-[1.1] text-on-surface">
+            Become an Early <span class="text-gradient">EventOxa</span> Partner
+          </h1>
+          <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+            Join an elite network of premium event service providers. Scale your business with precision-engineered
+            tools and access high-intent clients looking for the extraordinary.
+          </p>
+          <div class="flex flex-wrap gap-stack-md">
+            <button onclick="document.getElementById('registration').scrollIntoView({behavior: 'smooth'})"
+              class="primary-gradient text-white px-8 py-4 rounded-full font-label-md hover:scale-105 transition-all duration-300 shadow-2xl shadow-primary/30">
+              Register Now
+            </button>
+            <button
+              class="glass-card text-on-surface px-8 py-4 rounded-full font-label-md border border-outline-variant hover:bg-white/60 transition-all duration-300">
+              View Roadmap
+            </button>
+          </div>
+        </div>
+        <div class="relative h-[300px] md:h-[700px] w-full">
+          <div id="threejs-container-ANIMATION_3" class="absolute inset-0 w-full h-full scale-100 md:scale-110"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Join (Orbiting Component) -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto overflow-visible">
+      <div class="relative flex flex-col items-center justify-center min-h-[500px]">
+        <div
+          class="z-20 glass-card p-4 rounded-full w-80 h-80 flex items-center justify-center shadow-2xl border-2 border-primary-container overflow-hidden bg-white/90">
+          <img src="/eventoxa-logo.png" alt="EventOxa Center Logo" class="center-logo" />
+        </div>
+
+        <!-- Orbiting items -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div class="orbit w-full h-full absolute">
+            <div
+              class="glass-card p-3 md:p-6 rounded-xl md:rounded-2xl w-28 md:w-40 absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1 md:gap-2 text-center pointer-events-auto hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-primary text-2xl md:text-4xl"
+                data-icon="verified_user">verified_user</span>
+              <p class="text-[10px] md:text-label-md font-semibold leading-tight text-on-surface">Early Badge</p>
+            </div>
+          </div>
+          <div class="orbit w-full h-full absolute" style="animation-delay: -5s;">
+            <div
+              class="glass-card p-3 md:p-6 rounded-xl md:rounded-2xl w-28 md:w-40 absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1 md:gap-2 text-center pointer-events-auto hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-secondary text-2xl md:text-4xl"
+                data-icon="trending_up">trending_up</span>
+              <p class="text-[10px] md:text-label-md font-semibold leading-tight text-on-surface">High Visibility</p>
+            </div>
+          </div>
+          <div class="orbit w-full h-full absolute" style="animation-delay: -10s;">
+            <div
+              class="glass-card p-3 md:p-6 rounded-xl md:rounded-2xl w-28 md:w-40 absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 flex flex-col items-center gap-1 md:gap-2 text-center pointer-events-auto hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-tertiary text-2xl md:text-4xl"
+                data-icon="payments">payments</span>
+              <p class="text-[10px] md:text-label-md font-semibold leading-tight text-on-surface">Zero Fees</p>
+            </div>
+          </div>
+          <div class="orbit w-full h-full absolute" style="animation-delay: -15s;">
+            <div
+              class="glass-card p-3 md:p-6 rounded-xl md:rounded-2xl w-28 md:w-40 absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1 md:gap-2 text-center pointer-events-auto hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-primary text-2xl md:text-4xl"
+                data-icon="monitoring">monitoring</span>
+              <p class="text-[10px] md:text-label-md font-semibold leading-tight text-on-surface">Analytics</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Registration Centerpiece -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low/30 relative"
+      id="registration">
+      <!-- Curve Divider -->
+      <div class="absolute top-0 left-0 w-full overflow-hidden leading-[0] transform rotate-180">
+        <svg class="relative block w-full h-24 text-background fill-current" preserveAspectRatio="none"
+          viewBox="0 0 1200 120">
+          <path
+            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z">
+          </path>
+        </svg>
+      </div>
+
+      <div class="max-w-4xl mx-auto pt-10">
+        <div class="text-center mb-stack-lg space-y-stack-md">
+          <h2 class="font-headline-lg text-headline-lg text-on-surface">Vendor Portal Registration</h2>
+          <p class="font-body-md text-on-surface-variant max-w-xl mx-auto">Start your journey today. Fill out the
+            multi-step verification form to unlock early access privileges.</p>
+        </div>
+
+        <div
+          class="glass-card rounded-[24px] p-8 md:p-12 shadow-2xl shadow-black/5 border border-white/50 floating-anim">
+          <!-- Progress Bar -->
+          <div class="flex items-center justify-between mb-12 relative px-2">
+            <div class="absolute h-1 bg-outline-variant w-full top-1/2 -translate-y-1/2 -z-10 rounded-full"></div>
+            <div id="progress-line"
+              class="absolute h-1 primary-gradient w-[0%] top-1/2 -translate-y-1/2 -z-10 rounded-full transition-all duration-700">
+            </div>
+            <div
+              class="progress-indicator w-10 h-10 rounded-full primary-gradient text-white flex items-center justify-center font-bold">
+              1</div>
+            <div
+              class="progress-indicator w-10 h-10 rounded-full bg-white border-2 border-outline-variant text-outline flex items-center justify-center font-bold">
+              2</div>
+            <div
+              class="progress-indicator w-10 h-10 rounded-full bg-white border-2 border-outline-variant text-outline flex items-center justify-center font-bold">
+              3</div>
+            <div
+              class="progress-indicator w-10 h-10 rounded-full bg-white border-2 border-outline-variant text-outline flex items-center justify-center font-bold">
+              4</div>
+          </div>
+
+          <form id="vendor-form" class="space-y-stack-lg">
+            <!-- Step 1: Personal Info -->
+            <div class="form-step space-y-6">
+              <h3 class="font-headline-md text-primary text-xl font-bold">Step 1: Partner Details</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+                <div class="space-y-2 text-left">
+                  <label class="font-label-md text-on-surface-variant ml-1">Full Name</label>
+                  <input id="full-name" required
+                    class="w-full bg-white/50 border border-outline-variant focus:border-primary focus:ring-primary rounded-xl py-4 px-6 transition-all"
+                    placeholder="Johnathan Doe" type="text" />
+                </div>
+                <div class="space-y-2 text-left">
+                  <label class="font-label-md text-on-surface-variant ml-1">Email Address</label>
+                  <input id="email-addr" required
+                    class="w-full bg-white/50 border border-outline-variant focus:border-primary focus:ring-primary rounded-xl py-4 px-6 transition-all"
+                    placeholder="john@studio.com" type="email" />
+                </div>
+                <div class="space-y-2 text-left md:col-span-2">
+                  <label class="font-label-md text-on-surface-variant ml-1">Phone Number</label>
+                  <input id="phone-num" required
+                    class="w-full bg-white/50 border border-outline-variant focus:border-primary focus:ring-primary rounded-xl py-4 px-6 transition-all"
+                    placeholder="+1 (555) 019-2834" type="tel" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Category Selection -->
+            <div class="form-step hidden space-y-6">
+              <h3 class="font-headline-md text-primary text-xl font-bold">Step 2: Choose Business Category</h3>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-stack-md">
+                <div
+                  class="category-chip glass-card p-4 rounded-xl border-2 border-primary-container bg-primary-fixed/20 flex flex-col items-center gap-2 cursor-pointer transition-all hover:scale-105"
+                  data-category="Photography">
+                  <span class="material-symbols-outlined text-primary text-3xl"
+                    data-icon="photo_camera">photo_camera</span>
+                  <span class="font-label-sm">Photography</span>
+                </div>
+                <div
+                  class="category-chip glass-card p-4 rounded-xl border border-outline-variant flex flex-col items-center gap-2 cursor-pointer transition-all hover:scale-105"
+                  data-category="DJ / Music">
+                  <span class="material-symbols-outlined text-on-surface-variant text-3xl"
+                    data-icon="album">album</span>
+                  <span class="font-label-sm">DJ / Music</span>
+                </div>
+                <div
+                  class="category-chip glass-card p-4 rounded-xl border border-outline-variant flex flex-col items-center gap-2 cursor-pointer transition-all hover:scale-105"
+                  data-category="Catering">
+                  <span class="material-symbols-outlined text-on-surface-variant text-3xl"
+                    data-icon="restaurant">restaurant</span>
+                  <span class="font-label-sm">Catering</span>
+                </div>
+                <div
+                  class="category-chip glass-card p-4 rounded-xl border border-outline-variant flex flex-col items-center gap-2 cursor-pointer transition-all hover:scale-105"
+                  data-category="Venue">
+                  <span class="material-symbols-outlined text-on-surface-variant text-3xl"
+                    data-icon="festival">festival</span>
+                  <span class="font-label-sm">Venue</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Document Uploads -->
+            <div class="form-step hidden space-y-6">
+              <h3 class="font-headline-md text-primary text-xl font-bold">Step 3: Upload Identity Assets</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+                <div
+                  class="border-2 border-dashed border-outline-variant rounded-2xl p-8 flex flex-col items-center justify-center gap-4 bg-white/30 hover:bg-white/50 transition-colors cursor-pointer group relative">
+                  <input type="file" id="profile-photo-input" class="absolute inset-0 opacity-0 cursor-pointer" />
+                  <span
+                    class="material-symbols-outlined text-4xl text-outline group-hover:text-primary transition-colors"
+                    data-icon="cloud_upload">cloud_upload</span>
+                  <div class="text-center">
+                    <p class="font-label-md">Upload Profile Photo</p>
+                    <p class="text-[12px] text-outline">JPG, PNG up to 5MB</p>
+                  </div>
+                </div>
+                <div
+                  class="border-2 border-dashed border-outline-variant rounded-2xl p-8 flex flex-col items-center justify-center gap-4 bg-white/30 hover:bg-white/50 transition-colors cursor-pointer group relative">
+                  <input type="file" id="business-logo-input" class="absolute inset-0 opacity-0 cursor-pointer" />
+                  <span
+                    class="material-symbols-outlined text-4xl text-outline group-hover:text-primary transition-colors"
+                    data-icon="add_business">add_business</span>
+                  <div class="text-center">
+                    <p class="font-label-md">Upload Business Logo</p>
+                    <p class="text-[12px] text-outline">SVG, AI or High-res PNG</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Summary Review -->
+            <div class="form-step hidden space-y-6">
+              <h3 class="font-headline-md text-primary text-xl font-bold">Step 4: Review Your Details</h3>
+              <div class="glass-card p-6 rounded-2xl space-y-4 text-left border border-white/60">
+                <div class="flex justify-between border-b border-outline-variant/30 pb-2">
+                  <span class="text-on-surface-variant font-medium">Full Name:</span>
+                  <span id="summary-name" class="font-bold text-primary">N/A</span>
+                </div>
+                <div class="flex justify-between border-b border-outline-variant/30 pb-2">
+                  <span class="text-on-surface-variant font-medium">Email Address:</span>
+                  <span id="summary-email" class="font-bold text-primary">N/A</span>
+                </div>
+                <div class="flex justify-between border-b border-outline-variant/30 pb-2">
+                  <span class="text-on-surface-variant font-medium">Phone Number:</span>
+                  <span id="summary-phone" class="font-bold text-primary">N/A</span>
+                </div>
+                <div class="flex justify-between pb-2">
+                  <span class="text-on-surface-variant font-medium">Category:</span>
+                  <span id="summary-category" class="font-bold text-primary">Photography</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between items-center pt-4">
+              <button type="button" id="prev-btn"
+                class="invisible glass-card text-on-surface px-6 py-3 rounded-xl font-label-md border border-outline-variant hover:bg-white/60 transition-all">
+                Previous
+              </button>
+              <button type="button" id="next-btn"
+                class="primary-gradient text-white px-8 py-3 rounded-xl font-label-md hover:scale-[1.02] transition-all shadow-xl shadow-primary/20">
+                Next Step
+              </button>
+              <button type="submit" id="submit-btn"
+                class="hidden primary-gradient text-white px-8 py-3 rounded-xl font-label-md hover:scale-[1.02] transition-all shadow-xl shadow-primary/20">
+                Submit Registration
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Roadmap -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+      <h2 class="font-headline-lg text-headline-lg text-center mb-section-gap text-on-surface">The Launch Journey</h2>
+      <div class="relative max-w-5xl mx-auto">
+        <!-- Vertical Line (Desktop) -->
+        <div
+          class="hidden md:block absolute left-1/2 -translate-x-1/2 w-1 h-full roadmap-line -z-10 rounded-full opacity-30">
+        </div>
+        <div class="space-y-24">
+          <!-- Step 1 -->
+          <div class="flex flex-col md:flex-row items-center gap-stack-lg">
+            <div class="md:w-1/2 md:text-right pr-0 md:pr-8">
+              <h3 class="font-headline-md text-primary mb-2">Phase 1: Registration</h3>
+              <p class="font-body-md text-on-surface-variant">Secure your spot in our curated vendor ecosystem. Early
+                registrants undergo a simplified but thorough verification process.</p>
+            </div>
+            <div
+              class="w-12 h-12 rounded-full primary-gradient flex items-center justify-center shadow-lg shadow-primary/30 z-10 shrink-0">
+              <span class="material-symbols-outlined text-white" data-icon="app_registration">app_registration</span>
+            </div>
+            <div class="md:w-1/2 pl-0 md:pl-8 hidden md:block">
+              <div class="glass-card p-1 rounded-2xl h-40 overflow-hidden shadow-sm">
+                <div class="w-full h-full rounded-xl bg-cover bg-center"
+                  style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBFJ8q-XiH66zlFQ5ko1rTaS7YAPlPK3gMw_c_4rRXx-Kkue7GLa6q-llXG1nC4ifVbUeAflctbOwEiczRqZ8xfMYgMgTxYTp3KLMnEUTSr6QM795EEP44ehXj7S0LpG1ChKXGP9Qe-FIdF8TgvQCJ8sG9Fvkhsq2DibbG6iqwveziVpkrH2xp23FblKCIqia-gwt0_wk9ET-xG5kqCQaic6EW8z-mVHsU5uqMagzxF6AjyUD1WfybbeA')">
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Step 2 -->
+          <div class="flex flex-col md:flex-row-reverse items-center gap-stack-lg">
+            <div class="md:w-1/2 md:text-left pl-0 md:pl-8">
+              <h3 class="font-headline-md text-secondary mb-2">Phase 2: Onboarding</h3>
+              <p class="font-body-md text-on-surface-variant">Work with our creative directors to refine your digital
+                storefront. High-fidelity portfolios and premium video integrations.</p>
+            </div>
+            <div
+              class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center shadow-lg shadow-secondary/30 z-10 shrink-0">
+              <span class="material-symbols-outlined text-white" data-icon="auto_awesome">auto_awesome</span>
+            </div>
+            <div class="md:w-1/2 pr-0 md:pr-8 hidden md:block">
+              <div class="glass-card p-1 rounded-2xl h-40 overflow-hidden shadow-sm">
+                <div class="w-full h-full rounded-xl bg-cover bg-center"
+                  style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB0LPK8BvnjfZY_IARFf1ScF3IbDH1dw5kd4Pt_3JXQaPnlrB0QMM_KS--VdTfz9TtcPexYv7pGxWaBwqm960tZWpk8JLVn6NFVn1vwRXMGr8m1ikVLyyjEPmP4oOpxstym136_iUsUkfDmpLVlCWdirr9gSuCVgQfK3NFvxf_JcyaqtHw7HpP3_HRiXZpZB7YDmyfoG-Yv3MDr3t6GhsWkGtxJutlujBvIFPQclcDiEwlZNkUD-IV17g')">
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Step 3 -->
+          <div class="flex flex-col md:flex-row items-center gap-stack-lg">
+            <div class="md:w-1/2 md:text-right pr-0 md:pr-8">
+              <h3 class="font-headline-md text-tertiary mb-2">Phase 3: Global Launch</h3>
+              <p class="font-body-md text-on-surface-variant">The EventOxa marketplace goes live. Experience the power
+                of our matchmaking algorithm connecting you to your dream clients.</p>
+            </div>
+            <div
+              class="w-12 h-12 rounded-full bg-tertiary flex items-center justify-center shadow-lg shadow-tertiary/30 z-10 shrink-0">
+              <span class="material-symbols-outlined text-white" data-icon="rocket_launch">rocket_launch</span>
+            </div>
+            <div class="md:w-1/2 pl-0 md:pl-8 hidden md:block">
+              <div class="glass-card p-1 rounded-2xl h-40 overflow-hidden shadow-sm">
+                <div class="w-full h-full rounded-xl bg-cover bg-center"
+                  style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCX-O86yhLiv5c8pDzMiN9iaphGH53SBw7M-x1tjtEA3uTKRAMRcokgOeuFHJ7VBOxkRHRZeh7_2-YmhEnTyfdQXgmrzYUAnXsqRfXDiM6DTfpyAiUa0TSCJf7nWz9AhIad131VcuJw0B8uYWf-CRiuFyBuH_1EwxO-N8tyryGNwKg8eJc-DJbcES0M3U5bLf9wTzqpAgrTMcSiXfueLXRyTGHUDcV062xjgkC_jQmdyWYdtBkXW0nBAg')">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- FAQ Section -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-3xl mx-auto">
+      <h2 class="font-headline-lg text-headline-lg text-center mb-stack-lg text-on-surface">Questions &amp; Answers</h2>
+      <div class="space-y-stack-md">
+        <div class="glass-card rounded-2xl overflow-hidden group text-left">
+          <button class="w-full flex items-center justify-between p-6 text-left"
+            onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.arrow').classList.toggle('rotate-180')">
+            <span class="font-headline-md text-on-surface">Is there a cost for early registration?</span>
+            <span class="material-symbols-outlined arrow transition-transform duration-300"
+              data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+          </button>
+          <div class="px-6 pb-6 text-on-surface-variant font-body-md hidden border-t border-outline-variant/20 pt-4">
+            Early registration is currently free for qualified vendors. We believe in building a foundation of quality
+            before implementing our premium subscription models.
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl overflow-hidden group text-left">
+          <button class="w-full flex items-center justify-between p-6 text-left"
+            onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.arrow').classList.toggle('rotate-180')">
+            <span class="font-headline-md text-on-surface">How long does verification take?</span>
+            <span class="material-symbols-outlined arrow transition-transform duration-300"
+              data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+          </button>
+          <div class="px-6 pb-6 text-on-surface-variant font-body-md hidden border-t border-outline-variant/20 pt-4">
+            Our internal curation team reviews applications within 3-5 business days to ensure the highest standards of
+            our partner network.
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl overflow-hidden group text-left">
+          <button class="w-full flex items-center justify-between p-6 text-left"
+            onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.arrow').classList.toggle('rotate-180')">
+            <span class="font-headline-md text-on-surface">What data is required for onboarding?</span>
+            <span class="material-symbols-outlined arrow transition-transform duration-300"
+              data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+          </button>
+          <div class="px-6 pb-6 text-on-surface-variant font-body-md hidden border-t border-outline-variant/20 pt-4">
+            We require basic business registration details, a portfolio of at least 5 premium events, and verifiable
+            client testimonials.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-inverse-surface dark:bg-surface-container-lowest w-full py-section-gap">
+    <div
+      class="grid grid-cols-1 md:grid-cols-4 gap-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-left">
+      <div class="space-y-stack-md col-span-1 md:col-span-1">
+        <div class="flex items-center gap-3">
+          <img src="/eventoxa-logo.png" alt="EventOxa Logo" class="footer-logo" />
+          <div class="font-headline-md text-headline-md font-extrabold text-primary-fixed-dim">EventOxa</div>
+        </div>
+        <p class="text-outline-variant text-body-md">Engineering the future of celebration through precision and
+          technology.</p>
+      </div>
+      <div class="space-y-stack-md">
+        <h4 class="text-surface-bright font-bold">Navigation</h4>
+        <ul class="space-y-2">
+          <li><a
+              class="text-outline-variant hover:text-surface-bright transition-colors hover:translate-x-1 inline-block transition-transform duration-200"
+              href="#">Experience</a></li>
+          <li><a
+              class="text-outline-variant hover:text-surface-bright transition-colors hover:translate-x-1 inline-block transition-transform duration-200"
+              href="#">Solutions</a></li>
+          <li><a
+              class="text-outline-variant hover:text-surface-bright transition-colors hover:translate-x-1 inline-block transition-transform duration-200"
+              href="#">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="space-y-stack-md">
+        <h4 class="text-surface-bright font-bold">Legal</h4>
+        <ul class="space-y-2">
+          <li><a
+              class="text-outline-variant hover:text-surface-bright transition-colors hover:translate-x-1 inline-block transition-transform duration-200"
+              href="#">Privacy Policy</a></li>
+          <li><a
+              class="text-outline-variant hover:text-surface-bright transition-colors hover:translate-x-1 inline-block transition-transform duration-200"
+              href="#">Terms of Service</a></li>
+          <li><a
+              class="text-outline-variant hover:text-surface-bright transition-colors hover:translate-x-1 inline-block transition-transform duration-200"
+              href="#">Cookie Policy</a></li>
+        </ul>
+      </div>
+      <div class="space-y-stack-md">
+        <h4 class="text-surface-bright font-bold">Connect</h4>
+        <div class="flex gap-4">
+          <div
+            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+            <span class="material-symbols-outlined text-white" data-icon="share">share</span>
+          </div>
+          <div
+            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+            <span class="material-symbols-outlined text-white" data-icon="mail">mail</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-section-gap border-t border-white/10 pt-8 text-center px-margin-mobile">
+      <p class="text-outline-variant text-label-sm">© 2026 EventOxa. Engineering the future of celebration.</p>
+    </div>
+  </footer>
+
+  <!-- Modular Scripts Connection -->
+  <script type="module">
+    import { initShader } from './shader.js';
+    import { initThreeGlobe } from './three-globe.js';
+    import { initApp } from './app.js';
+
+    // Initialize WebGL background shader
+    initShader('shader-canvas-ANIMATION_2');
+
+    // Initialize Three.js interactive globe
+    initThreeGlobe('threejs-container-ANIMATION_3');
+
+    // Initialize overall app behaviors (Form, scroll reveal, chips)
+    initApp();
+  </script>
+</body>
+
+</html>
