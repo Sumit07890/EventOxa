@@ -158,6 +158,7 @@ export function initApp() {
       e.preventDefault();
 
       const payload = {
+        type: 'vendor',
         name: document.getElementById('full-name').value.trim(),
         email: document.getElementById('email-addr').value.trim(),
         phone: document.getElementById('phone-num').value.trim(),
@@ -182,6 +183,79 @@ export function initApp() {
       }
     });
   }
+
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby71ocKU9Lug7KkzXZziUmG_VBdaPwSWxVe7t6m67SjnF8DWL0gvatytTb21zbtGhN2dw/exec';
+
+  // Ask a Question
+  const askBtn = document.getElementById('ask-btn');
+  const askInput = document.getElementById('user-question');
+  const askStatus = document.getElementById('ask-status');
+
+  if (askBtn) {
+    askBtn.addEventListener('click', async () => {
+      const question = askInput.value.trim();
+      if (!question) return;
+
+      askBtn.disabled = true;
+      askBtn.innerText = 'Sending...';
+
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'question', question })
+        });
+        askInput.value = '';
+        askStatus.innerText = '✅ Question submitted! We will answer it shortly.';
+        askStatus.classList.remove('hidden', 'text-error');
+        askStatus.classList.add('text-primary');
+      } catch {
+        askStatus.innerText = '❌ Failed to submit. Please try again.';
+        askStatus.classList.remove('hidden', 'text-primary');
+        askStatus.classList.add('text-error');
+      }
+
+      askBtn.disabled = false;
+      askBtn.innerText = 'Submit';
+    });
+  }
+
+  // Load approved Q&As from Google Sheets
+  async function loadCommunityQnA() {
+    const container = document.getElementById('community-qna');
+    if (!container) return;
+
+    try {
+      const res = await fetch(APPS_SCRIPT_URL);
+      const questions = await res.json();
+
+      if (!questions.length) return;
+
+      const heading = document.createElement('h3');
+      heading.className = 'font-headline-md text-on-surface mt-8 mb-4';
+      heading.innerText = 'Community Questions';
+      container.appendChild(heading);
+
+      questions.forEach(({ question, answer }) => {
+        const card = document.createElement('div');
+        card.className = 'glass-card rounded-2xl overflow-hidden text-left';
+        card.innerHTML = `
+          <button class="w-full flex items-center justify-between p-6 text-left"
+            onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.arrow').classList.toggle('rotate-180')">
+            <span class="font-headline-md text-on-surface">${question}</span>
+            <span class="material-symbols-outlined arrow transition-transform duration-300">keyboard_arrow_down</span>
+          </button>
+          <div class="px-6 pb-6 text-on-surface-variant font-body-md hidden border-t border-outline-variant/20 pt-4">${answer}</div>
+        `;
+        container.appendChild(card);
+      });
+    } catch {
+      // silently fail if sheet is empty or unreachable
+    }
+  }
+
+  loadCommunityQnA();
 
   // Scroll Reveal Observer
   const observerOptions = {

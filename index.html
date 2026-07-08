@@ -503,7 +503,23 @@
     <!-- FAQ Section -->
     <section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-3xl mx-auto">
       <h2 class="font-headline-lg text-headline-lg text-center mb-stack-lg text-on-surface">Questions &amp; Answers</h2>
-      <div class="space-y-stack-md">
+
+      <!-- Ask a Question Form -->
+      <div class="glass-card rounded-2xl p-6 mb-stack-lg border border-white/50">
+        <h3 class="font-headline-md text-on-surface mb-4">Ask a Question</h3>
+        <div class="flex gap-3">
+          <input id="user-question" type="text" placeholder="Type your question here..."
+            class="flex-1 bg-white/50 border border-outline-variant focus:border-primary rounded-xl py-3 px-5 transition-all" />
+          <button id="ask-btn"
+            class="primary-gradient text-white px-6 py-3 rounded-xl font-label-md hover:scale-105 transition-all shadow-lg shadow-primary/20 shrink-0">
+            Submit
+          </button>
+        </div>
+        <p id="ask-status" class="text-label-sm text-on-surface-variant mt-2 hidden"></p>
+      </div>
+
+      <!-- Static FAQs -->
+      <div class="space-y-stack-md" id="faq-static">
         <div class="glass-card rounded-2xl overflow-hidden group text-left">
           <button class="w-full flex items-center justify-between p-6 text-left"
             onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.arrow').classList.toggle('rotate-180')">
@@ -543,6 +559,9 @@
           </div>
         </div>
       </div>
+
+      <!-- Community Q&As from Google Sheets -->
+      <div id="community-qna" class="space-y-stack-md mt-stack-lg"></div>
     </section>
   </main>
 
