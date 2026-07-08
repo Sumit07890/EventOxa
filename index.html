@@ -172,11 +172,11 @@
   <main class="relative pt-20">
     <!-- Hero Section -->
     <section
-      class="relative min-h-[700px] md:min-h-[921px] flex items-center px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto overflow-hidden pt-10 md:pt-0">
+      class="relative min-h-[600px] md:min-h-[921px] flex items-center px-4 md:px-margin-desktop max-w-container-max mx-auto overflow-hidden pt-8 md:pt-0">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg items-center w-full">
-        <div class="z-10 space-y-stack-lg text-left">
+        <div class="z-10 space-y-4 text-left">
           <div
-            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm uppercase tracking-widest animate-pulse">
+            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm uppercase tracking-widest animate-pulse text-[10px] md:text-label-sm">
             <span class="relative flex h-2 w-2">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
               <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
@@ -190,28 +190,28 @@
             Join an elite network of premium event service providers. Scale your business with precision-engineered
             tools and access high-intent clients looking for the extraordinary.
           </p>
-          <div class="flex flex-wrap gap-stack-md">
+          <div class="flex flex-wrap gap-3">
             <button onclick="document.getElementById('registration').scrollIntoView({behavior: 'smooth'})"
-              class="primary-gradient text-white px-8 py-4 rounded-full font-label-md hover:scale-105 transition-all duration-300 shadow-2xl shadow-primary/30">
+              class="primary-gradient text-white px-6 py-3 rounded-full font-label-md hover:scale-105 transition-all duration-300 shadow-2xl shadow-primary/30 text-sm">
               Register Now
             </button>
             <button
-              class="glass-card text-on-surface px-8 py-4 rounded-full font-label-md border border-outline-variant hover:bg-white/60 transition-all duration-300">
+              class="glass-card text-on-surface px-6 py-3 rounded-full font-label-md border border-outline-variant hover:bg-white/60 transition-all duration-300 text-sm">
               View Roadmap
             </button>
           </div>
         </div>
-        <div class="relative h-[300px] md:h-[700px] w-full">
+        <div class="relative h-[220px] md:h-[700px] w-full">
           <div id="threejs-container-ANIMATION_3" class="absolute inset-0 w-full h-full scale-100 md:scale-110"></div>
         </div>
       </div>
     </section>
 
     <!-- Why Join (Orbiting Component) -->
-    <section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto overflow-visible">
-      <div class="relative flex flex-col items-center justify-center min-h-[500px]">
+    <section class="py-16 md:py-section-gap px-4 md:px-margin-desktop max-w-container-max mx-auto overflow-hidden">
+      <div class="relative flex flex-col items-center justify-center min-h-[340px] md:min-h-[500px]">
         <div
-          class="z-20 glass-card p-4 rounded-full w-80 h-80 flex items-center justify-center shadow-2xl border-2 border-primary-container overflow-hidden bg-white/90">
+          class="z-20 glass-card p-4 rounded-full w-44 h-44 md:w-80 md:h-80 flex items-center justify-center shadow-2xl border-2 border-primary-container overflow-hidden bg-white/90">
           <img src="/eventoxa-logo.png" alt="EventOxa Center Logo" class="center-logo" />
         </div>
 
@@ -254,7 +254,7 @@
     </section>
 
     <!-- Main Registration Centerpiece -->
-    <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low/30 relative"
+    <section class="py-12 md:py-section-gap px-4 md:px-margin-desktop bg-surface-container-low/30 relative"
       id="registration">
       <!-- Curve Divider -->
       <div class="absolute top-0 left-0 w-full overflow-hidden leading-[0] transform rotate-180">
@@ -274,7 +274,7 @@
         </div>
 
         <div
-          class="glass-card rounded-[24px] p-8 md:p-12 shadow-2xl shadow-black/5 border border-white/50 floating-anim">
+          class="glass-card rounded-[24px] p-5 md:p-12 shadow-2xl shadow-black/5 border border-white/50 md:floating-anim">
           <!-- Progress Bar -->
           <div class="flex items-center justify-between mb-12 relative px-2">
             <div class="absolute h-1 bg-outline-variant w-full top-1/2 -translate-y-1/2 -z-10 rounded-full"></div>
@@ -429,7 +429,7 @@
     </section>
 
     <!-- Interactive Roadmap -->
-    <section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+    <section class="py-12 md:py-section-gap px-4 md:px-margin-desktop max-w-container-max mx-auto">
       <h2 class="font-headline-lg text-headline-lg text-center mb-section-gap text-on-surface">The Launch Journey</h2>
       <div class="relative max-w-5xl mx-auto">
         <!-- Vertical Line (Desktop) -->
@@ -439,7 +439,7 @@
         <div class="space-y-24">
           <!-- Step 1 -->
           <div class="flex flex-col md:flex-row items-center gap-stack-lg">
-            <div class="md:w-1/2 md:text-right pr-0 md:pr-8">
+            <div class="md:w-1/2 md:text-right pr-0 md:pr-8 text-center md:text-right">
               <h3 class="font-headline-md text-primary mb-2">Phase 1: Registration</h3>
               <p class="font-body-md text-on-surface-variant">Secure your spot in our curated vendor ecosystem. Early
                 registrants undergo a simplified but thorough verification process.</p>
@@ -458,7 +458,7 @@
           </div>
           <!-- Step 2 -->
           <div class="flex flex-col md:flex-row-reverse items-center gap-stack-lg">
-            <div class="md:w-1/2 md:text-left pl-0 md:pl-8">
+            <div class="md:w-1/2 md:text-left pl-0 md:pl-8 text-center md:text-left">
               <h3 class="font-headline-md text-secondary mb-2">Phase 2: Onboarding</h3>
               <p class="font-body-md text-on-surface-variant">Work with our creative directors to refine your digital
                 storefront. High-fidelity portfolios and premium video integrations.</p>
@@ -477,7 +477,7 @@
           </div>
           <!-- Step 3 -->
           <div class="flex flex-col md:flex-row items-center gap-stack-lg">
-            <div class="md:w-1/2 md:text-right pr-0 md:pr-8">
+            <div class="md:w-1/2 md:text-right pr-0 md:pr-8 text-center md:text-right">
               <h3 class="font-headline-md text-tertiary mb-2">Phase 3: Global Launch</h3>
               <p class="font-body-md text-on-surface-variant">The EventOxa marketplace goes live. Experience the power
                 of our matchmaking algorithm connecting you to your dream clients.</p>
@@ -501,7 +501,7 @@
 
 
     <!-- FAQ Section -->
-    <section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-3xl mx-auto">
+    <section class="py-12 md:py-section-gap px-4 md:px-margin-desktop max-w-3xl mx-auto">
       <h2 class="font-headline-lg text-headline-lg text-center mb-stack-lg text-on-surface">Questions &amp; Answers</h2>
 
       <!-- Ask a Question Form -->
@@ -510,11 +510,11 @@
         <div class="space-y-3">
           <input id="ask-email" type="email" placeholder="Your email (optional, to get notified when answered)"
             class="w-full bg-white/50 border border-outline-variant focus:border-primary rounded-xl py-3 px-5 transition-all" />
-          <div class="flex gap-3">
+          <div class="flex flex-col sm:flex-row gap-3">
             <input id="user-question" type="text" placeholder="Type your question here..."
               class="flex-1 bg-white/50 border border-outline-variant focus:border-primary rounded-xl py-3 px-5 transition-all" />
             <button id="ask-btn"
-              class="primary-gradient text-white px-6 py-3 rounded-xl font-label-md hover:scale-105 transition-all shadow-lg shadow-primary/20 shrink-0">
+              class="primary-gradient text-white px-6 py-3 rounded-xl font-label-md hover:scale-105 transition-all shadow-lg shadow-primary/20 w-full sm:w-auto">
               Submit
             </button>
           </div>
@@ -570,10 +570,10 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-inverse-surface dark:bg-surface-container-lowest w-full py-section-gap">
+  <footer class="bg-inverse-surface dark:bg-surface-container-lowest w-full py-12 md:py-section-gap">
     <div
-      class="grid grid-cols-1 md:grid-cols-4 gap-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-left">
-      <div class="space-y-stack-md col-span-1 md:col-span-1">
+      class="grid grid-cols-2 md:grid-cols-4 gap-8 px-4 md:px-margin-desktop max-w-container-max mx-auto text-left">
+      <div class="space-y-stack-md col-span-2 md:col-span-1">
         <div class="flex items-center gap-3">
           <img src="/eventoxa-logo.png" alt="EventOxa Logo" class="footer-logo" />
           <div class="font-headline-md text-headline-md font-extrabold text-primary-fixed-dim">EventOxa</div>

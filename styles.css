@@ -27,7 +27,13 @@
 }
 
 .floating-anim {
-  animation: floating 6s ease-in-out infinite;
+  animation: none;
+}
+
+@media (min-width: 768px) {
+  .floating-anim {
+    animation: floating 6s ease-in-out infinite;
+  }
 }
 
 @keyframes floating {
@@ -37,12 +43,12 @@
 }
 
 :root {
-  --orbit-radius: 80px;
+  --orbit-radius: 55px;
 }
 
 @media (min-width: 768px) {
   :root {
-    --orbit-radius: 120px;
+    --orbit-radius: 160px;
   }
 }
 
