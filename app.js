@@ -165,23 +165,20 @@ export function initApp() {
       };
 
       try {
-        const res = await fetch('http://localhost:3001/submit', {
+        await fetch('https://script.google.com/macros/s/AKfycby71ocKU9Lug7KkzXZziUmG_VBdaPwSWxVe7t6m67SjnF8DWL0gvatytTb21zbtGhN2dw/exec', {
           method: 'POST',
+          mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
 
-        if (res.ok) {
-          alert('Congratulations! Your application has been submitted successfully.');
-          e.target.reset();
-          currentStep = 0;
-          selectedCategory = 'Photography';
-          updateForm();
-        } else {
-          alert('Submission failed. Please try again.');
-        }
+        alert('Congratulations! Your application has been submitted successfully.');
+        e.target.reset();
+        currentStep = 0;
+        selectedCategory = 'Photography';
+        updateForm();
       } catch {
-        alert('Could not reach the server. Make sure the backend is running.');
+        alert('Submission failed. Please check your internet connection and try again.');
       }
     });
   }
