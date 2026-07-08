@@ -138,6 +138,7 @@ export function initApp() {
   // Ask a Question
   const askBtn = document.getElementById('ask-btn');
   const askInput = document.getElementById('user-question');
+  const askEmail = document.getElementById('ask-email');
   const askStatus = document.getElementById('ask-status');
 
   if (askBtn) {
@@ -149,8 +150,9 @@ export function initApp() {
       askBtn.innerText = 'Sending...';
 
       try {
-        await postToSheet({ type: 'question', question });
+        await postToSheet({ type: 'question', question, email: askEmail.value.trim() });
         askInput.value = '';
+        askEmail.value = '';
         askStatus.innerText = '✅ Question submitted! We will answer it shortly.';
         askStatus.classList.remove('hidden', 'text-error');
         askStatus.classList.add('text-primary');
